@@ -305,7 +305,7 @@
       <img src="assets/pipeline.png?v=2" width="1536" height="1024"
            alt="DEG starts with morphology-based groups and uniform weights. At each iteration, the actor takes one step per group. At a scheduled refresh, DEG recomputes gradient similarities after the updates, blends gradient and graph dissimilarities, and uses Ward clustering and each robot’s affinities to the members of every group to derive new weights.">
     </a>
-    <figcaption><strong>Actor training in DEG.</strong> In the main configuration, all 16 robots start with equal weight in each of four groups. Each iteration computes their gradients once at the same actor parameters. Each group then takes a turn updating the shared actor in a fixed order, using a clipped, weighted mean of all 16 gradients. The weights stay fixed between successful refreshes. The matrices illustrate the operations schematically.</figcaption>
+    <figcaption>Each of the four groups updates the shared actor using a weighted average of all 16 robots’ gradients. After warmup, DEG periodically refreshes the groups and weights using robot morphology and current gradients.</figcaption>
   </figure>
 
   <div class="tldr">
