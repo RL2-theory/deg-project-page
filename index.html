@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://rl2-theory.github.io/deg-project-page/">
 <meta property="og:url" content="https://rl2-theory.github.io/deg-project-page/">
-<meta property="og:image" content="https://rl2-theory.github.io/deg-project-page/assets/pipeline.png">
+<meta property="og:image" content="https://rl2-theory.github.io/deg-project-page/assets/pipeline.png?v=2">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='13' rx='3' fill='%23aecbfa'/%3E%3Crect x='17' y='2' width='13' height='13' rx='3' fill='%23fcd8b8'/%3E%3Crect x='2' y='17' width='13' height='13' rx='3' fill='%23b7e4c7'/%3E%3Crect x='17' y='17' width='13' height='13' rx='3' fill='%23d8c4ee'/%3E%3C/svg%3E">
 <style>
   :root{
@@ -301,9 +301,11 @@
   </div>
 
   <figure class="teaser">
-    <img src="assets/pipeline.png"
-         alt="Pipeline: static EG groups from body structure; per-robot gradient statistics; combined structure and gradient distance with hierarchical regrouping and soft weights; sequential group updates with clipping, refreshed periodically.">
-    <figcaption>DEG initializes groups from robot morphology. During training, it uses morphology and current actor gradients to refresh the groups and calculate each robot’s weight in each update to the shared policy.</figcaption>
+    <a href="assets/pipeline.png?v=2" aria-label="Open the full-size DEG actor training diagram">
+      <img src="assets/pipeline.png?v=2" width="1536" height="1024"
+           alt="DEG starts with morphology-based groups and uniform weights. At each iteration, the actor takes one step per group. At a scheduled refresh, DEG recomputes gradient similarities after the updates, blends gradient and graph dissimilarities, and uses Ward clustering and within-group affinities to derive new weights.">
+    </a>
+    <figcaption><strong>Actor training in DEG.</strong> In the main configuration, all 16 robots start with equal weight in each of four groups. Each iteration computes their gradients once at the same actor parameters. Each group then takes a turn updating the shared actor in a fixed order, using a clipped, weighted mean of all 16 gradients. The weights stay fixed between successful refreshes. The matrices illustrate the operations schematically.</figcaption>
   </figure>
 
   <div class="tldr">
